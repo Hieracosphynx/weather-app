@@ -1,3 +1,3 @@
 # Weather Application
 
-This application IS tailor for my personal use and practice the fundamental of API, css, React, etc.
+This application IS tailored for my personal use while it also acts as a learning project.
