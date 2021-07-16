@@ -34,6 +34,11 @@ const Weather = (props) => {
 
   return (
     <div className={classes['weather-container']}>
+      <div className={classes['weather-container__temp']}>
+        <span>
+          <h3>{localWeather.current_temp} °F</h3>
+        </span>
+      </div>
       <div className={classes['weather-container__controls']}>
         <span>
           <b>Weather: </b>
@@ -44,12 +49,6 @@ const Weather = (props) => {
         <span>
           <b>Description: </b>
           {localWeather.description}
-        </span>
-      </div>
-      <div className={classes['weather-container__controls']}>
-        <span>
-          <b>Current Temperature: </b>
-          {localWeather.current_temp} °F
         </span>
       </div>
       <div className={classes['weather-container__controls']}>
