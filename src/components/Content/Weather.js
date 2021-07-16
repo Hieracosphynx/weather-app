@@ -4,10 +4,10 @@ import classes from './Weather.module.css';
 
 const Weather = (props) => {
   const [localWeather, setLocalWeather] = useState([]);
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
   const showLocalWeatherHandler = useCallback(() => {
     fetch(
-      'https://api.openweathermap.org/data/2.5/weather?q=Las%20Vegas,Nevada&appid=b63b0a32a568900a19d26e2dc3a8b980'
+      `https://api.openweathermap.org/data/2.5/weather?q=Las%20Vegas,Nevada&appid=${API_KEY}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -15,15 +15,15 @@ const Weather = (props) => {
           id: data.weather[0].id,
           weather: data.weather[0].main,
           description: data.weather[0].description,
-          current_temp: convertTemp(data.main.temp),
-          hi_temp: convertTemp(data.main.temp_max),
+          current_temp: convertTemp(data.main.temp.toFixed(2)),
+          hi_temp: convertTemp(data.main.temp_max.toFixed(2)),
         };
         setLocalWeather(weather);
       })
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [API_KEY]);
 
   const convertTemp = (temp) => {
     return ((temp - 273.15) * 9) / 5 + 32;
@@ -45,11 +45,11 @@ const Weather = (props) => {
       </span>
       <span>
         <h4>Current Temperature:</h4>
-        <p>{localWeather.current_temp.toFixed(2)} °F</p>
+        <p>{localWeather.current_temp} °F</p>
       </span>
       <span>
         <h4>High:</h4>
-        <p>{localWeather.hi_temp.toFixed(2)} °F</p>
+        <p>{localWeather.hi_temp} °F</p>
       </span>
     </div>
   );
