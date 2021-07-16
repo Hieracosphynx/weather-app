@@ -1,11 +1,17 @@
 import Content from './components/Content/Content';
 import classes from './App.module.css';
-function App() {
+
+const App = () => {
   return (
     <div className={classes.container}>
-      <Content />
+      <div className={classes.container__header}>
+        <h3>Hieracosphynx</h3>
+      </div>
+      <div className={classes.container__content}>
+        <Content />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

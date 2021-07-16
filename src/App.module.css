@@ -1,6 +1,22 @@
 .container {
-  height: 100%;
+  overflow: hidden;
+}
+
+.container__header {
+  display: block;
+  justify-content: space-around;
+}
+
+.container__content {
+  position: relative;
+  margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container h3 {
+  color: white;
+  margin-left: 10px;
+  font-size: 40px;
 }
