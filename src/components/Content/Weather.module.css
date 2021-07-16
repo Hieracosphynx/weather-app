@@ -1,0 +1,9 @@
+.weather-container__controls {
+  display: flex;
+  align-items: flex-start;
+  border-color: white;
+  border-top: solid;
+  border-top-width: 1px;
+  margin-top: 5%;
+  /* background: blue; */
+}
