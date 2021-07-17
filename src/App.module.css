@@ -1,18 +1,19 @@
 .container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   overflow: hidden;
 }
-.container h3 {
-  color: white;
-  margin-left: 10px;
-  font-size: 40px;
-}
+/* 
 .container__header {
   display: inline;
-}
-
+} */
+/* 
 .container__content {
   position: relative;
   margin-top: 7%;
   display: flex;
   justify-content: center;
-}
+} */

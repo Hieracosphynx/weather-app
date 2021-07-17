@@ -4,9 +4,9 @@ import classes from './App.module.css';
 const App = () => {
   return (
     <div className={classes.container}>
-      <div className={classes.container__header}>
+      {/* <div className={classes.container__header}>
         <h3>Hieracosphynx</h3>
-      </div>
+      </div> */}
       <div className={classes.container__content}>
         <Content />
       </div>
