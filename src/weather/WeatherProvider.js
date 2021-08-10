@@ -1,19 +1,44 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { useState, useCallback } from 'react';
+import WeatherContext from './weather-context';
 
-// const initialWeatherState = {
-//   current_temp: 0,
-//   hi_temp: 0,
-//   weather: null,
-//   humidity: 0,
-// };
+const WeatherProvider = (props) => {
+  const [weather, setWeather] = useState({});
+  const [isFahrenheit, setIsFahrenheit] = useState(true);
+  const [isCelsius, setIsCelsius] = useState(false);
 
-// const weatherSlice = createSlice({
-//   name: 'weather',
-//   initialState: initialWeatherState,
-//   reducers: {
-//     forecast(state) {},
-//   },
-// });
+  const isFahrentheitHandler = () => {
+    setIsFahrenheit(true);
+    setIsCelsius(false);
+  };
 
-// export const weatherActions = weatherSlice.actions;
-// export default weatherSlice;
+  const isCelsiusHandler = () => {
+    setIsFahrenheit(false);
+    setIsCelsius(true);
+  };
+
+  const getWeatherHandler = (weatherObject) => {
+    setWeather({
+      id: weatherObject.id,
+      current_temp: weatherObject.current_temp,
+      hi_temp: weatherObject.hi_temp,
+      weather: weatherObject.weather,
+      humidity: weatherObject.humidity,
+    });
+  };
+
+  const weatherContext = {
+    weather: weather,
+    getWeatherHandler: getWeatherHandler,
+    isFahrenheit: isFahrenheit,
+    isFahrentheitHandler: isFahrentheitHandler,
+    isCelsius: isCelsius,
+    isCelsiusHandler: isCelsiusHandler,
+  };
+  return (
+    <WeatherContext.Provider value={weatherContext}>
+      {props.children}
+    </WeatherContext.Provider>
+  );
+};
+
+export default WeatherProvider;

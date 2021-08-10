@@ -4,9 +4,8 @@ const useHttp = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const fetchHttp = useCallback(
-    async (location, applyData) => {
+    async (applyData) => {
       /**
        * Area / location is hardcoded IN openWeather URL API. PLans on changing it.
        */
@@ -28,9 +27,9 @@ const useHttp = () => {
           weather: data.weather[0].main,
           humidity: data.main.humidity,
         };
-        setLoading(false);
-        console.log(weather);
+
         applyData(weather);
+        setLoading(false);
       } catch (e) {
         setError(e.message);
       }

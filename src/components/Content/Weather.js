@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './Weather.module.css';
+import WeatherContext from '../../weather/weather-context';
 
 const Weather = (props) => {
   const { localWeather, onCelsius, onFahrenheit, isFahrenheit } = props;
+  const weatherCtx = useContext(WeatherContext);
 
   const onCelsiusHandler = () => {
     onCelsius({
@@ -47,7 +49,7 @@ const Weather = (props) => {
       <div className={classes['weather-container__temp']}>
         <span>
           <h3>
-            {localWeather.current_temp}
+            {weatherCtx.weather.current_temp}
             {metric}
           </h3>
         </span>
@@ -55,20 +57,20 @@ const Weather = (props) => {
       <div className={classes['weather-container__controls']}>
         <span>
           <b>High: </b>
-          {localWeather.hi_temp}
+          {weatherCtx.weather.hi_temp}
           {metric}
         </span>
       </div>
       <div className={classes['weather-container__controls']}>
         <span>
           <b>Weather: </b>
-          {localWeather.weather}
+          {weatherCtx.weather.weather}
         </span>
       </div>
       <div className={classes['weather-container__controls']}>
         <span>
           <b>Humidity: </b>
-          {localWeather.humidity}%
+          {weatherCtx.weather.humidity}%
         </span>
       </div>
     </React.Fragment>
