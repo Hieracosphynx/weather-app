@@ -3,7 +3,6 @@ import classes from './Weather.module.css';
 import WeatherContext from '../../weather/weather-context';
 
 const Weather = (props) => {
-  const { localWeather, onCelsius, onFahrenheit, isFahrenheit } = props;
   const weatherCtx = useContext(WeatherContext);
 
   let metric = '°F';

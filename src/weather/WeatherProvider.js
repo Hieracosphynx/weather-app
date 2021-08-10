@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import WeatherContext from './weather-context';
 
 const WeatherProvider = (props) => {
