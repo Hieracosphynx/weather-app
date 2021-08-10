@@ -13,7 +13,6 @@ const Content = () => {
   useEffect(() => {
     const getData = (weatherObject) => {
       weatherCtx.getWeatherHandler(weatherObject);
-      console.log(weatherCtx.weather);
     };
     fetchWeather(getData);
   }, [fetchWeather]);
@@ -21,12 +20,7 @@ const Content = () => {
   return (
     <Card>
       {!loading || error ? (
-        <Weather
-        // isFahrenheit={isFahrenheit}
-        // onFahrenheit={onFahrenheitHandler}
-        // onCelsius={onCelsiusHandler}
-        // localWeather={localWeather}
-        />
+        <Weather />
       ) : (
         <div className={classes['weather-container__temp']}>
           if(error){<b>{error}</b>}else{<img src={spinner} alt='Loading...' />}

@@ -6,16 +6,6 @@ const WeatherProvider = (props) => {
   const [isFahrenheit, setIsFahrenheit] = useState(true);
   const [isCelsius, setIsCelsius] = useState(false);
 
-  const isFahrentheitHandler = () => {
-    setIsFahrenheit(true);
-    setIsCelsius(false);
-  };
-
-  const isCelsiusHandler = () => {
-    setIsFahrenheit(false);
-    setIsCelsius(true);
-  };
-
   const getWeatherHandler = (weatherObject) => {
     setWeather({
       id: weatherObject.id,
@@ -26,11 +16,50 @@ const WeatherProvider = (props) => {
     });
   };
 
+  const convertToFahrenheit = (celsiusTemp) => {
+    return (celsiusTemp * 9) / 5 + 32;
+  };
+
+  const isFahrenheitHandler = () => {
+    setIsFahrenheit(true);
+    setIsCelsius(false);
+    setWeather((currentWeather) => {
+      return {
+        id: currentWeather.id,
+        current_temp: convertToFahrenheit(currentWeather.current_temp).toFixed(
+          0
+        ),
+        hi_temp: convertToFahrenheit(currentWeather.hi_temp).toFixed(0),
+        weather: currentWeather.weather,
+        humidity: currentWeather.humidity,
+      };
+    });
+  };
+
+  const convertToCelsius = (fahrenheitTemp) => {
+    return ((fahrenheitTemp - 32) * 5) / 9;
+  };
+
+  const isCelsiusHandler = () => {
+    setIsFahrenheit(false);
+    setIsCelsius(true);
+
+    setWeather((currentWeather) => {
+      return {
+        id: currentWeather.id,
+        current_temp: convertToCelsius(currentWeather.current_temp).toFixed(2),
+        hi_temp: convertToCelsius(currentWeather.hi_temp).toFixed(2),
+        weather: currentWeather.weather,
+        humidity: currentWeather.humidity,
+      };
+    });
+  };
+
   const weatherContext = {
     weather: weather,
     getWeatherHandler: getWeatherHandler,
     isFahrenheit: isFahrenheit,
-    isFahrentheitHandler: isFahrentheitHandler,
+    isFahrenheitHandler: isFahrenheitHandler,
     isCelsius: isCelsius,
     isCelsiusHandler: isCelsiusHandler,
   };

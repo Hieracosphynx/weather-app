@@ -6,40 +6,27 @@ const Weather = (props) => {
   const { localWeather, onCelsius, onFahrenheit, isFahrenheit } = props;
   const weatherCtx = useContext(WeatherContext);
 
-  const onCelsiusHandler = () => {
-    onCelsius({
-      current_temp: localWeather.current_temp,
-      hi_temp: localWeather.hi_temp,
-    });
-  };
-
-  const onFahrenheitHandler = () => {
-    onFahrenheit({
-      current_temp: localWeather.current_temp,
-      hi_temp: localWeather.hi_temp,
-    });
-  };
   let metric = '°F';
 
-  if (isFahrenheit) {
+  if (weatherCtx.isFahrenheit && !weatherCtx.isCelsius) {
     metric = '°F';
   }
-  if (!isFahrenheit) {
+  if (weatherCtx.isCelsius && !weatherCtx.isFahrenheit) {
     metric = '°C';
   }
 
   return (
     <React.Fragment>
       <div className={classes.metric}>
-        <button onClick={onFahrenheitHandler}>
-          {isFahrenheit ? (
+        <button onClick={weatherCtx.isFahrenheitHandler}>
+          {weatherCtx.isFahrenheit ? (
             <b className={classes['current-metric']}>°F</b>
           ) : (
             '°F'
           )}
         </button>
-        <button onClick={onCelsiusHandler}>
-          {!isFahrenheit ? (
+        <button onClick={weatherCtx.isCelsiusHandler}>
+          {weatherCtx.isCelsius ? (
             <b className={classes['current-metric']}>°C</b>
           ) : (
             '°C'
