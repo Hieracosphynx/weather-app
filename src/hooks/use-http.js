@@ -4,6 +4,11 @@ const useHttp = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const kelvinToFahrenheit = (initialTemp) => {
+    return ((initialTemp - 273.15) * 9) / 5 + 32;
+  };
+
   const fetchHttp = useCallback(
     async (applyData) => {
       /**
@@ -22,8 +27,8 @@ const useHttp = () => {
 
         const weather = {
           id: data.weather[0].id,
-          current_temp: data.main.temp,
-          hi_temp: data.main.temp_max,
+          current_temp: kelvinToFahrenheit(data.main.temp).toFixed(0),
+          hi_temp: kelvinToFahrenheit(data.main.temp_max).toFixed(0),
           weather: data.weather[0].main,
           humidity: data.main.humidity,
         };
